@@ -21,15 +21,16 @@ if(MSVC)
 endif()
 
 include_directories(include)
-#add_subdirectory("extern/xtl")
-#add_subdirectory("extern/xtensor")
-#include_directories("extern/xtl/include")
-#include_directories("extern/xtensor/include")
+add_subdirectory("extern/xtl")
+add_subdirectory("extern/xtensor")
+include_directories("extern/xtl/include")
+include_directories("extern/xtensor/include")
 
 # Add source to this project's executable.
-add_library(xtensor_interp_lib src/xtensor-interp.cpp)
-add_executable(xtensor_interp src/main.cpp)
+add_library(xtensor_interp_lib   "src/axis.cpp" "include/axis.h")
+add_executable(xtensor_interp   "src/axis.cpp" "include/axis.h")
 target_link_libraries(xtensor_interp xtensor_interp_lib)
+
 
 # TODO: Add tests and install targets if needed.
 add_subdirectory("extern/googletest")
@@ -37,7 +38,7 @@ enable_testing()
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-add_executable(runUnitTests test/test_project.cpp)
+add_executable(runUnitTests test/test_project.cpp  "src/axis.cpp" "include/axis.h")
 
 target_link_libraries(runUnitTests xtensor_interp_lib gtest GTest::gtest_main)
 

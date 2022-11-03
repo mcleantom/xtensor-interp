@@ -1,16 +1,36 @@
 #include <iostream>
 #include "gtest/gtest.h"
-#include "xtensor-interp.h"
+#include "axis.h"
+#include <string>
 
-// IndependentMethod is a test case - here, we have 2 tests for this 1 test case
-TEST(IndependentMethod, ResetsToZero) {
-	int i = 3;
-	independentMethod(i);
-	ASSERT_EQ(0, i);
+
+TEST(AxisMethod, DoesInitialize) {
+	float min = 0;
+	float max = 10;
+	float step = 2;
+	std::string name = "x";
+	Axis axis(name, min, max, step);
 }
 
-TEST(IndependentMethod, ResetsToZero2) {
-	int i = 0;
-	independentMethod(i);
-	EXPECT_EQ(0, i);
+TEST(AxisMethod, DoesGetIndex) {
+	float min = 0;
+	float max = 10;
+	float step = 2;
+	std::string name = "x";
+	Axis axis(name, min, max, step);
+
+	int index = axis.get_index(0);
+	EXPECT_EQ(0, 0);
+	EXPECT_EQ(0, axis.get_index(1));
+	EXPECT_EQ(1, axis.get_index(2));
+}
+
+TEST(AxisMethod, DoesThrowException) {
+	float min = 0;
+	float max = 10;
+	float step = 2;
+	std::string name = "x";
+	Axis axis(name, min, max, step);
+
+	EXPECT_THROW(axis.get_index(-1), std::out_of_range);
 }
