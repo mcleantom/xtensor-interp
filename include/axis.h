@@ -3,9 +3,9 @@
 
 #include<string>
 
-class Axis {
+class CoordinatesMap {
 public:
-	Axis(std::string name, float min, float max, float step);
+	CoordinatesMap(std::string name, float min, float max, float step);
 	int get_index(float x);
 protected:
 	std::string name;

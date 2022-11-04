@@ -1,6 +1,7 @@
 #include <iostream>
 #include "gtest/gtest.h"
 #include "axis.h"
+#include "rgi.h"
 #include <string>
 
 
@@ -33,4 +34,17 @@ TEST(AxisMethod, DoesThrowException) {
 	Axis axis(name, min, max, step);
 
 	EXPECT_THROW(axis.get_index(-1), std::out_of_range);
+}
+
+TEST(RGIClass, WrongNumAxis) {
+	std::map<std::string, Axis> axis{
+		{"X", Axis("X", 0, 10, 2)},
+		{"Y", Axis("Y", -10, 0, 1)}
+	};
+	xt::xarray<double> data{ 1, 2, 3 };
+	
+	EXPECT_THROW(RGI(axis, data), std::invalid_argument);
+
+	data = { {1, 2, 3}, {4, 5, 6} };
+	EXPECT_NO_THROW(RGI(axis, data));
 }

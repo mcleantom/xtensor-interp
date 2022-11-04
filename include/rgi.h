@@ -7,9 +7,10 @@
 
 class RGI {
 public:
-	RGI(std::vector<Axis> axis, xt::xarray<double> data);
+	RGI(std::map<std::string, Axis> axis, xt::xarray<double> data);
+	xt::xarray<double> linear(std::map<std::string, Axis> axis);
 private:
-	std::vector<Axis> axis;
+	std::map<std::string, Axis> axis;
 	xt::xarray<double> data;
 };
 
