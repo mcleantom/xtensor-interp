@@ -27,9 +27,9 @@ include_directories("extern/xtl/include")
 include_directories("extern/xtensor/include")
 
 # Add source to this project's executable.
-add_library(xtensor_interp_lib   "src/axis.cpp" "include/axis.h")
-add_executable(xtensor_interp   "src/axis.cpp" "include/axis.h")
-target_link_libraries(xtensor_interp xtensor_interp_lib)
+add_library(xtensor_interp_lib   "src/axis.cpp" "include/axis.h" "src/rgi.cpp" "include/rgi.h")
+add_executable(xtensor_interp   "src/axis.cpp" "include/axis.h" "src/rgi.cpp" "include/rgi.h")
+target_link_libraries(xtensor_interp xtensor_interp_lib xtensor xtl)
 
 
 # TODO: Add tests and install targets if needed.
@@ -38,7 +38,7 @@ enable_testing()
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-add_executable(runUnitTests test/test_project.cpp  "src/axis.cpp" "include/axis.h")
+add_executable(runUnitTests test/test_project.cpp  "src/axis.cpp" "include/axis.h" "src/rgi.cpp" "include/rgi.h")
 
 target_link_libraries(runUnitTests xtensor_interp_lib gtest GTest::gtest_main)
 
