@@ -36,15 +36,13 @@ TEST(AxisMethod, DoesThrowException) {
 	EXPECT_THROW(axis.get_index(-1), std::out_of_range);
 }
 
-TEST(RGIClass, WrongNumAxis) {
-	std::map<std::string, CoordinatesMap> axis{
-		{"X", CoordinatesMap("X", 0, 10, 2)},
-		{"Y", CoordinatesMap("Y", -10, 0, 1)}
-	};
-	xt::xarray<double> data{ 1, 2, 3 };
-	
-	EXPECT_THROW(RGI(axis, data), std::invalid_argument);
 
-	data = { {1, 2, 3}, {4, 5, 6} };
-	EXPECT_NO_THROW(RGI(axis, data));
+TEST(RGIClass, Initializes) {
+	std::map<std::string, CoordinatesMap> axis{
+		{"X", CoordinatesMap("X", 0, 10, 2)}
+	};
+
+	xt::xarray<double> data = { 0, 2, 4, 6, 8, 10 };
+	RGI x(axis, data);
+
 }
