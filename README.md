@@ -1,5 +1,28 @@
 # XTensor-Interp
 
-The scipy regular grid interpolator does not scale well for high-dimensional data, as it is build to be resiliant to a lot of use cases (i.e. extrapolation).
-This library uses XTensor to provide a RegularGridInterpolator-like class that has higher performance, with the caveat that it only interpolates for within the
-bounds of the data, and that the data is on a true regular-spaced-grid (However, this requireent may be removed in the future). 
+XTensorInterp creates a class that allows the interpolation of N-Dimensional grids.
+
+This class is designed to be similar to the Scipy RegularGridInterpolator, however it will scale better to higher-dimensional grids.
+
+In addition, the library will allow for the interpolation for XArray Datasets, allowing for multiple datasets that are on identical grids to be efficiently interpolated.
+
+## Development
+
+Remember to initialize the repository by initializing the submodules using the command:
+
+```
+git clone --recurse-submodules https://github.com/mcleantom/xtensor-interp.git
+```
+
+### CMake
+
+This project uses CMake to configure the project. You must have at least version 3.20.
+
+### GTest
+
+googletest is uses for unit testing the C++ library. 
+
+
+## Similar Projects
+
+This project is heavily influenced by [pangeo-pyinterp](https://github.com/CNES/pangeo-pyinterp).
