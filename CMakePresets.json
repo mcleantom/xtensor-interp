@@ -1,0 +1,93 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "debug_linux",
+            "displayName": "Debug (Linux)",
+            "binaryDir": "${sourceDir}/build/Debug",
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_CXX_FLAGS_INIT": "-std=c++17 -pthread -fPIC -g --coverage -Werror -Wall -Wextra -pedantic -Wuninitialized -Wno-cpp -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option -fvisibility=hidden"
+            }
+        },
+        {
+            "name": "release_linux",
+            "displayName": "Release (Linux)",
+            "binaryDir": "${sourceDir}/build/Release",
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_CXX_FLAGS_INIT": "-std=c++17 -pthread -fPIC -O3 -Wall -Wextra -pedantic -Wuninitialized -Wno-cpp -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option -fvisibility=hidden"
+            }
+        },
+        {
+            "name": "debug_linux_clang",
+            "displayName": "Debug (Linux Clang)",
+            "description": "Using compilers: C = /usr/bin/clang, CXX = /usr/bin/clang++",
+            "binaryDir": "${sourceDir}/build/DebugClang",
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++",
+                "CMAKE_CXX_FLAGS_INIT": "-std=c++17 -pthread --coverage -Werror -Wall -Wextra -pedantic -Wuninitialized -Wno-cpp -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-include-dirs -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option"
+            }
+        },
+        {
+            "name": "release_linux_clang",
+            "displayName": "Release (Linux Clang)",
+            "description": "Clang",
+            "binaryDir": "${sourceDir}/build/ReleaseClang",
+            "generator": "Unix Makefiles",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++",
+                "CMAKE_CXX_FLAGS_INIT": "-std=c++17 -pthread -fPIC -O3 -Werror -Wall -Wextra -pedantic -Wuninitialized -Wno-cpp -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wmissing-include-dirs -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option"
+            }
+        },
+        {
+            "name": "debug_windows",
+            "displayName": "Debug (MSVC)",
+            "generator": "Visual Studio 17 2022",
+            "toolset": "host=x86",
+            "architecture": "win32",
+            "binaryDir": "${sourceDir}/build/debug_windows",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_CXX_FLAGS_INIT": "-std:c++17 -D_USE_MATH_DEFINES -Dgtest_force_shared_crt=TRUE"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "debug_linux",
+            "displayName": "Debug (Linux)",
+            "configurePreset": "debug_linux"
+        },
+        {
+            "name": "release_linux",
+            "displayName": "Release (Linux)",
+            "configurePreset": "release_linux"
+        },
+        {
+            "name": "debug_linux_clang",
+            "displayName": "Debug (Linux Clang)",
+            "configurePreset": "debug_linux_clang"
+        },
+        {
+            "name": "debug_windows",
+            "displayName": "Debug (Windows Clang)",
+            "configurePreset": "debug_windows",
+            "configuration": "Debug"
+        }
+    ]
+}

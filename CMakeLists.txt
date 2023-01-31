@@ -3,7 +3,15 @@
 #
 cmake_minimum_required (VERSION 3.8)
 
-project ("pybind-test-5")
+project ("XTensorInterp")
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
+set(Boost_NO_WARN_NEW_VERSIONS 1)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_DEBUG_POSTFIX d)
 
 # force static runtime libraries for msvc builds
 if(MSVC)
@@ -20,26 +28,5 @@ if(MSVC)
   endforeach()
 endif()
 
-include_directories(include)
-add_subdirectory("extern/xtl")
-add_subdirectory("extern/xtensor")
-include_directories("extern/xtl/include")
-include_directories("extern/xtensor/include")
-
-# Add source to this project's executable.
-add_library(xtensor_interp_lib   "src/coodinates_map.cpp" "include/coodinates_map.h" "src/rgi.cpp" "include/rgi.h")
-add_executable(xtensor_interp   "src/coodinates_map.cpp" "include/coodinates_map.h" "src/rgi.cpp" "include/rgi.h")
-target_link_libraries(xtensor_interp xtensor_interp_lib xtensor xtl)
-
-
-# TODO: Add tests and install targets if needed.
-add_subdirectory("extern/googletest")
-enable_testing()
-
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
-
-add_executable(runUnitTests test/test_project.cpp  "src/coodinates_map.cpp" "include/coodinates_map.h" "src/rgi.cpp" "include/rgi.h")
-
-target_link_libraries(runUnitTests xtensor_interp_lib gtest GTest::gtest_main)
-
-add_test(NAME that-test-I-made COMMAND runUnitTests)
+# add_subdirectory("extern")
+add_subdirectory("tests")
