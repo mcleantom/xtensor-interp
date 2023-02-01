@@ -28,5 +28,8 @@ if(MSVC)
   endforeach()
 endif()
 
+
+
 # add_subdirectory("extern")
+add_subdirectory("XTensorInterp")
 add_subdirectory("tests")

@@ -1,6 +1,0 @@
-#ifndef XTENSOR_INTERP_AXIS_HPP
-#define XTENSOR_INTERP_AXIS_HPP
-
-
-
-#endif

@@ -19,9 +19,15 @@ add_executable(
     ${ctests_SRC}
 )
 
+add_dependencies(
+    XTensorInterp_unittests
+    XTensorInterp
+)
+
 target_link_libraries(
     XTensorInterp_unittests
     PUBLIC
+    XTensorInterp
     GTest::GTest
 )
 
