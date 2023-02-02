@@ -6,8 +6,10 @@ message("Configuring XTensorInterp Tests")
 set(CMAKE_CXX_STANDARD 17)
 
 # if (CMAKE_CXX_COMPILER_ID MATCHES GNU)
-#     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" --fprofile-arcs -ftest-coverage)
+    
 # endif()
+
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" --fprofile-arcs -ftest-coverage)
 
 enable_testing()
 find_package(GTest REQUIRED)
@@ -26,10 +28,10 @@ add_dependencies(
 
 target_link_libraries(
     XTensorInterp_unittests
-    PUBLIC
     XTensorInterp
     GTest::GTest
 )
+
 
 add_test(
     NAME

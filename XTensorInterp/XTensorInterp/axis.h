@@ -1,31 +1,30 @@
 #ifndef XTENSOR_INTERP_AXIS_HPP
 #define XTENSOR_INTERP_AXIS_HPP
 
+#include <memory>
+#include "XTensorInterp/container.h"
+
 template<typename T>
 class Axis {
 public:
     Axis() = default;
     Axis(
-        const T min,
-        const T max,
-        long int size
-    ) : _M_min(min), _M_max(max), _M_size(size) {};
+        Container<T> container
+    ) : m_Container(container) {};
     /**
      * @brief Returns the minmium value held in the axis.
      */
-    constexpr T minimum() const { return _M_min; };
+    constexpr T minimum() const { return m_Container->minimum(); };
     /**
      * @brief Returns the maximum value held in the axis.
      */
-    constexpr T maximum() const { return _M_max; };
+    constexpr T maximum() const { return m_Container->maximum(); };
     /**
      * @brief Returns the number of values for this axis.
      */
-    constexpr T size() const { return _M_size; };
+    constexpr T size() const { return m_Container->size(); };
 private:
-    const T _M_min; // The minimum value held by the axis
-    const T _M_max; // The maximum value held by the axis
-    const long int _M_size; // The number of points along the axis/the axis's size
+    std::unique_ptr<T> m_Container;
 };
 
 #endif

@@ -1,10 +1,11 @@
 ﻿# CMakeList.txt : CMake project for pybind-test-5, include source and define
 # project specific logic here.
 #
-cmake_minimum_required (VERSION 3.8)
+cmake_minimum_required (VERSION 3.20)
 
 project ("XTensorInterp")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
@@ -28,8 +29,6 @@ if(MSVC)
   endforeach()
 endif()
 
-
-
-# add_subdirectory("extern")
+add_subdirectory("extern")
 add_subdirectory("XTensorInterp")
 add_subdirectory("tests")

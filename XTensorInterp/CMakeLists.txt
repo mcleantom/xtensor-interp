@@ -26,6 +26,10 @@ set_target_properties(
     CXX
 )
 
+if(MSVC)
+    set(CMAKE_EXE_LINKER_FLAGS /MANIFEST:NO)
+endif()
+
 target_include_directories(
     XTensorInterp
     SYSTEM BEFORE PUBLIC
@@ -35,5 +39,6 @@ target_include_directories(
 target_link_libraries(
     XTensorInterp
     PUBLIC
+    xtensor
     ${LINK_LIBRARIES}
 )
