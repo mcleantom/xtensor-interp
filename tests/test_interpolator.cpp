@@ -2,15 +2,28 @@
 #include <gtest/gtest.h>
 #include <iostream>
 #include <xtensor/xarray.hpp>
+#include <xtensor/xnpy.hpp>
 
 TEST(Interpolator, Regular1D)
 {
-    auto x = Regular<double>(1, 3, 3);
-    xt::xarray<double> data = { 3, 2, 0 };
-    Interpolator<double> interp(x, data);
-    auto res = interp({1, 1.5, 2.72});
-    xt::xarray<double> expected = { 3, 2.5, 0.56};
-    for (size_t i=0; i<res.size(); ++i) {
-        EXPECT_FLOAT_EQ(res[i], expected[i]);
+    double min = 0;
+    double max = 3;
+    int n = 3;
+    auto xarr = xt::linspace<double>(min, max, n);
+    auto xcoord = Regular<double>(min, max, n);
+    auto yarr = xt::eval(2*xarr);
+    
+    auto xin = xt::linspace(min, max, n*3);
+
+    Interpolator<double> interp(xcoord, yarr);
+    auto interpolator_res = interp(xin);
+
+    auto xt_res = xt::eval(xt::interp(xin, xarr, yarr));
+
+    ASSERT_EQ(xt_res.size(), interpolator_res.size());
+    ASSERT_EQ(interpolator_res.size(), xin.size());
+
+    for (size_t i=0; i<interpolator_res.size(); ++i) {
+        EXPECT_EQ(interpolator_res[i], xt_res[i]);
     }
 }

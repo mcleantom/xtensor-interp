@@ -61,7 +61,7 @@ public:
     , m_InvStep(T(1.0)/m_Step) {};
     /// @copydoc Container::coordinate_value(const indexT) const
     T coordinateValue(const indexT index) const override {
-        return m_Min + index * m_InvStep;
+        return m_Min + index * m_Step;
     };
     T minValue() const override { return m_Min; }
     T maxValue() const override { return m_Max; }

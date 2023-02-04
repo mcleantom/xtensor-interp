@@ -14,6 +14,7 @@ TEST(Container, Regular)
 
     for (size_t i=0; i<vals.size(); ++i) {
         EXPECT_EQ(container.findIndex(vals[i], false), i);
+        EXPECT_EQ(container.coordinateValue(container.findIndex(vals[i], false)), vals[i]);
     }
 
     EXPECT_EQ(container.findIndex(1.25, true), 1);
