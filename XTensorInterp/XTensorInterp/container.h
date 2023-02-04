@@ -7,7 +7,7 @@
 template<typename T>
 class Container {
 public:
-    typedef long long int indexT;
+    typedef int64_t indexT;
     /**
      * @brief Returns True if the container is monotonic, else False.
      */
@@ -67,7 +67,7 @@ public:
     T maxValue() const override { return m_Max; }
     indexT size() const override { return m_Size; }
     indexT findIndex(T coordinate, bool bounded) const override {
-        indexT index = std::round((coordinate - m_Min) * m_InvStep);
+        indexT index = (coordinate - m_Min) * m_InvStep;
 
         if (index < 0) {
             return bounded ? -1 : 0;

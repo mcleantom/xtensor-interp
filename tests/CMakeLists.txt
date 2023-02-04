@@ -28,6 +28,7 @@ add_dependencies(
 
 target_link_libraries(
     XTensorInterp_unittests
+    PUBLIC
     XTensorInterp
     GTest::GTest
 )
