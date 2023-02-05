@@ -33,5 +33,10 @@
   "directory": "/home/mclea/src/xtensor-interp/build/Debug/tests",
   "command": "/usr/bin/c++ -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -isystem /home/mclea/src/xtensor-interp/XTensorInterp -isystem /home/mclea/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/mclea/src/xtensor-interp/build/Debug/_deps/xtl-src/include -std=c++17 -pthread -fPIC -g --coverage -Werror -Wall -Wextra -pedantic -Wuninitialized -Wno-cpp -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option -fvisibility=hidden -g -std=gnu++17 -o CMakeFiles/XTensorInterp_unittests.dir/test_interpolator.cpp.o -c /home/mclea/src/xtensor-interp/tests/test_interpolator.cpp",
   "file": "/home/mclea/src/xtensor-interp/tests/test_interpolator.cpp"
+},
+{
+  "directory": "/home/mclea/src/xtensor-interp/build/Debug/tests",
+  "command": "/usr/bin/c++ -DGTEST_LINKED_AS_SHARED_LIBRARY=1 -isystem /home/mclea/src/xtensor-interp/XTensorInterp -isystem /home/mclea/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/mclea/src/xtensor-interp/build/Debug/_deps/xtl-src/include -std=c++17 -pthread -fPIC -g --coverage -Werror -Wall -Wextra -pedantic -Wuninitialized -Wno-cpp -Wcast-align -Wcast-qual -Wctor-dtor-privacy -Wdisabled-optimization -Wformat=2 -Winit-self -Wlogical-op -Wmissing-include-dirs -Wnoexcept -Wold-style-cast -Woverloaded-virtual -Wredundant-decls -Wshadow -Wsign-promo -Wstrict-null-sentinel -Wstrict-overflow=5 -Wundef -Wno-unused -Wno-variadic-macros -Wno-parentheses -fdiagnostics-show-option -fvisibility=hidden -g -std=gnu++17 -o CMakeFiles/XTensorInterp_unittests.dir/test_itertools.cpp.o -c /home/mclea/src/xtensor-interp/tests/test_itertools.cpp",
+  "file": "/home/mclea/src/xtensor-interp/tests/test_itertools.cpp"
 }
 ]
