@@ -7,27 +7,31 @@
 #include <memory.h>
 #include <utility>
 #include <xtensor/xarray.hpp>
+#include <xtensor/xview.hpp>
+#include <xtensor/xio.hpp>
 
 template<typename T>
 class Interpolator {
 public:
     Interpolator(
-        Container<T> &x,
+        std::vector<std::unique_ptr<Container<T>>> grid,
         xt::xarray<T> data
-    ) 
-    : m_x(x)
+    )
+    : m_Grid(std::move(grid))
     , m_Data(std::move(data)) {};
     xt::xarray<T> operator() (const xt::xarray<T>& xarr) {
         auto dims = xarr.shape();
         auto res = xt::empty<T>(dims);
 
-        // auto [indices, norm_distances] = find_indices(xarr);
+        auto [indices, norm_distances] = find_indices(xarr);
+
+        assert(indices.shape()[0] == dims[0]);
 
         for (size_t i=0; i<dims[0]; ++i) {
             auto x = xarr[i];
-            auto index = m_x.findIndex(x, false);
-            auto x1 = m_x.coordinateValue(index);
-            auto x2 = m_x.coordinateValue(index+1);
+            auto index = m_Grid[0]->findIndex(x, false);
+            auto x1 = m_Grid[0]->coordinateValue(index);
+            auto x2 = m_Grid[0]->coordinateValue(index+1);
             auto dx = x2-x1;
             auto y1 = m_Data[index];
             auto y2 = m_Data[index+1];
@@ -39,23 +43,36 @@ public:
     };
 private:
     /**
-     * @brief Find the lower indices and the norm-distances along the hypercube for x.
+     * @brief Find the indices and norm distances of the points, xi. 
      * 
-     * @param xi 
-     * @return std::tuple<xt::xarray<size_t>, xt::xarray<T>> 
+     * @param xi The coordinates to find, of shape (NUM_DIMS, NUM_POINTS)
+     * @return std::tuple<xt::xarray<size_t>, xt::xarray<T>> A tuple of indices and norm distances for each of the 
+     points in xi.
      */
     std::tuple<xt::xarray<size_t>, xt::xarray<T>> find_indices(const xt::xarray<T>& xi) {
-        xt::xarray<size_t> indices = xt::empty<size_t>(xi.shape());
-        xt::xarray<T> norm_distances = xt::empty<T>(xi.shape());
-        for (size_t i=0; i<xi.size(); ++i) {
-            auto index = m_x.findIndex(xi[i], false);
-            indices[i] = index;
-            auto x1 = m_x.coordinateValue(index);
-            auto x2 = m_x.coordinateValue(index+1);
-            auto dx = x2 - x1;
-            auto norm_dist = (xi[i] - x1) / dx;
-            norm_distances[i] = norm_dist;
+        size_t I = m_Grid.size();
+        size_t J = xi.size();
+        xt::xarray<size_t> indices = xt::zeros<size_t>({I, J});
+        xt::xarray<T> norm_distances = xt::zeros<T>({I, J});
+
+        for (size_t i=0; i<I; ++i) {
+            std::unique_ptr<Container<T>> &grid = m_Grid[i];
+            xt::xarray<size_t> ix = xt::zeros<size_t>({J});
+            xt::xarray<T> nd = xt::zeros<size_t>({J});
+
+            for (size_t j=0; j<J; ++j) {
+                auto idx = grid->findIndex(xi[i, j], false);
+                ix[j] = grid->findIndex(xi[i, j], false);
+                auto x1 = grid->coordinateValue(idx);
+                auto x2 = grid->coordinateValue(idx+1);
+                auto dx = x2-x1;
+                auto norm_dist = (xi[i, j] - x1) / dx;
+                nd[j] = norm_dist;
+            }
+            xt::view(indices, i, xt::all()) = ix;
+            xt::view(norm_distances, i, xt::all()) = nd;
         }
+
         std::tuple<xt::xarray<size_t>, xt::xarray<T>> rtn = {indices, norm_distances};
         return rtn;
     };
@@ -120,8 +137,7 @@ private:
             
         }
     };
-
-    Container<T>& m_x;
+    std::vector<std::unique_ptr<Container<T>>> m_Grid;
     xt::xarray<T> m_Data;
 };
 

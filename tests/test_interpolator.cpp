@@ -10,12 +10,12 @@ TEST(Interpolator, Regular1D)
     double max = 3;
     int n = 3;
     auto xarr = xt::linspace<double>(min, max, n);
-    auto xcoord = Regular<double>(min, max, n);
+    std::unique_ptr<Container<double>> xcoord = std::make_unique<Regular<double>>(min, max, n);
     auto yarr = xt::eval(2*xarr);
-    
     auto xin = xt::linspace(min, max, n*3);
-
-    Interpolator<double> interp(xcoord, yarr);
+    std::vector<std::unique_ptr<Container<double>>> grid;
+    grid.push_back(std::move(xcoord));
+    Interpolator<double> interp(std::move(grid), yarr);
     auto interpolator_res = interp(xin);
 
     auto xt_res = xt::eval(xt::interp(xin, xarr, yarr));
@@ -26,4 +26,30 @@ TEST(Interpolator, Regular1D)
     for (size_t i=0; i<interpolator_res.size(); ++i) {
         EXPECT_EQ(interpolator_res[i], xt_res[i]);
     }
+}
+
+TEST(Interpolator, Regular2D)
+{
+    size_t m = 10;
+    size_t n = 20;
+    std::vector<std::unique_ptr<Container<double>>> grid;
+    grid.push_back(std::move(std::make_unique<Regular<double>>(0, 10, m)));
+    grid.push_back(std::move(std::make_unique<Regular<double>>(0, 10, n)));
+
+    xt::xarray<double> x = xt::linspace<double>(0, 10, m);
+    xt::xarray<double> y = xt::linspace<double>(0, 10, n);
+
+    x.reshape({m, 1});
+    y.reshape({1, n});
+
+    auto data = xt::eval(x*y);
+    data.reshape({m, n});
+
+    Interpolator<double> interp(std::move(grid), data);
+
+    xt::xarray<double> a0 = xt::linspace(0, 10, 15);
+    xt::xarray<double> b0 = xt::linspace(0, 10, 15);
+    auto xin = xt::vstack(xt::xtuple(a0, b0));
+
+    interp(xin);
 }
