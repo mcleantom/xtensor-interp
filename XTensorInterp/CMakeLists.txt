@@ -52,3 +52,9 @@ target_link_libraries(
     PUBLIC
     ${LINK_LIBRARIES}
 )
+
+target_compile_features(
+    XTensorInterp
+    PRIVATE
+    cxx_std_17
+)

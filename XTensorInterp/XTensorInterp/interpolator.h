@@ -20,6 +20,9 @@ public:
     xt::xarray<T> operator() (const xt::xarray<T>& xarr) {
         auto dims = xarr.shape();
         auto res = xt::empty<T>(dims);
+
+        // auto [indices, norm_distances] = find_indices(xarr);
+
         for (size_t i=0; i<dims[0]; ++i) {
             auto x = xarr[i];
             auto index = m_x.findIndex(x, false);
@@ -35,11 +38,33 @@ public:
         return res;
     };
 private:
-    T evaluate_linear(std::vector<size_t> indices, std::vector<T> norm_distances) {
+    /**
+     * @brief Find the lower indices and the norm-distances along the hypercube for x.
+     * 
+     * @param xi 
+     * @return std::tuple<xt::xarray<size_t>, xt::xarray<T>> 
+     */
+    std::tuple<xt::xarray<size_t>, xt::xarray<T>> find_indices(const xt::xarray<T>& xi) {
+        xt::xarray<size_t> indices = xt::empty<size_t>(xi.shape());
+        xt::xarray<T> norm_distances = xt::empty<T>(xi.shape());
+        for (size_t i=0; i<xi.size(); ++i) {
+            auto index = m_x.findIndex(xi[i], false);
+            indices[i] = index;
+            auto x1 = m_x.coordinateValue(index);
+            auto x2 = m_x.coordinateValue(index+1);
+            auto dx = x2 - x1;
+            auto norm_dist = (xi[i] - x1) / dx;
+            norm_distances[i] = norm_dist;
+        }
+        std::tuple<xt::xarray<size_t>, xt::xarray<T>> rtn = {indices, norm_distances};
+        return rtn;
+    };
+
+    T evaluate_linear(std::vector<size_t>& indices, std::vector<T>& norm_distances) {
         assert(indices.size() == norm_distances.size());
         /* The formula for linear interpolation in 2D is the form:
             value = m_Data[i0, i1]      * (1-y0)    * (1-y1) +
-                    m_Data[i0, i1+1]    * (1-y0)    * y1 +
+                    m_Data[i0, i1+1]    * (1-y0)    * y1     +
                     m_Data[i0+1, i1]    * y0        * (1-y1) +
                     m_Data[i0+1, i1+1]  * y0        * y1
         
