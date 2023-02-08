@@ -1,38 +1,34 @@
-cmake_minimum_required(VERSION 3.20)
-project(XTensorInterpTests)
+cmake_minimum_required(VERSION 3.25)
+project(XTensorInterp)
 
 message("Configuring XTensorInterp Tests")
 
 set(CMAKE_CXX_STANDARD 17)
 
-# if (CMAKE_CXX_COMPILER_ID MATCHES GNU)
-    
-# endif()
-
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" --fprofile-arcs -ftest-coverage)
-
 enable_testing()
-find_package(GTest REQUIRED)
 
 file(GLOB ctests_SRC CONFIGURE_DEPENDS "*.cpp")
+
+target_compile_options(gtest PRIVATE "-w")
 
 add_executable(
     XTensorInterp_unittests
     ${ctests_SRC}
 )
 
-add_dependencies(
-    XTensorInterp_unittests
-    XTensorInterp
-)
+set_property(TARGET gtest PROPERTY COMPILE_WARNING_AS_ERROR OFF)
+set_property(TARGET gtest_main PROPERTY COMPILE_WARNING_AS_ERROR OFF)
+
+set_target_properties(gtest PROPERTIES COMPILE_WARNING_AS_ERROR OFF)
+set_target_properties(gtest_main PROPERTIES COMPILE_WARNING_AS_ERROR OFF)
 
 target_link_libraries(
     XTensorInterp_unittests
     PUBLIC
     XTensorInterp
-    GTest::GTest
+    gtest
+    gtest_main
 )
-
 
 add_test(
     NAME
