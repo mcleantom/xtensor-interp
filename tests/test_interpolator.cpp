@@ -81,9 +81,14 @@ TEST(Interpolator, Regular3D)
 
     Interpolator interp(std::move(grid), data);
 
-    xt::xarray<double> res = {
-        {2.1, 6.2, 8.3}
+    xt::xarray<double> x_in = {
+        {2.1, 6.2, 8.3},
+        {3.3, 5.2, 7.1}
     };
 
-    auto rtn = interp(res);
+    auto rtn = interp(x_in);
+
+    xt::xarray<double> expected = { 125.80469388,  146.30069388};
+
+    EXPECT_TRUE(xt::allclose(rtn, expected, 1e-5));
 }

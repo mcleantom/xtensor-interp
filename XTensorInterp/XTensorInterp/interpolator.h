@@ -34,26 +34,14 @@ public:
         if (dims[1] != m_NDIMS) {
             throw std::invalid_argument("input vector has the wrong number of dimensions");
         }
-        auto res = xt::empty<T>(dims);
+        auto res = xt::empty<T>({dims[0]});
 
         for (size_t row=0; row<dims[0]; ++row) {
-
+            auto [indices, norm_distances] = find_indices(xt::row(xarr, row));
+            auto res1 = evaluate_linear(indices, norm_distances);
+            res.at(row) = res1.at(0);
         }
-
-        auto [indices, norm_distances] = find_indices(xt::row(xarr, 0));
-
-        std::cout << "indices: " << indices << std::endl;
-
-        std::cout << "Norm distances: " << norm_distances << std::endl;
-        // assert(
-        //     xt::xarray<size_t>({{3, 7}, {15, 8}, {20, 1}}) == indices
-        // );
-
-        // assert(
-        //     xt::amax(xt::xarray<T>({{2.f/3.f, 2.f/3.f}, {0.4, 0.4}, {0.8, 0.6}}) - norm_distances)(0) < 1e-7
-        // );
         
-        auto res1 = evaluate_linear(indices, norm_distances);
         return res;
     };
 private:
@@ -93,7 +81,7 @@ private:
      * @param norm_distances an xarray of T of shape (NDIMS, NPOINTS)
      * @return T 
      */
-    T evaluate_linear(xt::xarray<size_t>& indices, xt::xarray<T>& norm_distances) {
+    xt::xarray<double> evaluate_linear(xt::xarray<size_t>& indices, xt::xarray<T>& norm_distances) {
         assert(indices.shape() == norm_distances.shape());
         assert(indices.shape()[0] == m_NDIMS);
         // assert(indices.shape().size() == 2);
@@ -163,8 +151,8 @@ private:
             value = value+term;
             ++index;
         }
-        std::cout << value << std::endl;
-        return 0;
+        
+        return value;
     };
     std::vector<std::unique_ptr<Container<T>>> m_Grid;
     xt::xarray<T> m_Data;
