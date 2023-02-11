@@ -34,3 +34,4 @@ add_test(
 )
 
 set_property(TARGET XTensorInterp_unittests PROPERTY VERSION ${BUILD_VERSION})
+target_compile_definitions(XTensorInterp_unittests PRIVATE CMAKE_EXPORT_COMPILE_COMMANDS=1)

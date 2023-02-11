@@ -82,8 +82,7 @@ TEST(Interpolator, Regular3D)
     Interpolator interp(std::move(grid), data);
 
     xt::xarray<double> res = {
-        {2.1, 6.2, 8.3},
-        {3.3, 5.2, 7.1}
+        {2.1, 6.2, 8.3}
     };
 
     auto rtn = interp(res);

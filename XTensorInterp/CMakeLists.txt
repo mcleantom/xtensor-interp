@@ -58,3 +58,5 @@ target_compile_features(
     PRIVATE
     cxx_std_17
 )
+
+target_compile_definitions(XTensorInterp PRIVATE CMAKE_EXPORT_COMPILE_COMMANDS=1)

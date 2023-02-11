@@ -89,5 +89,13 @@
             "configurePreset": "debug_windows",
             "configuration": "Debug"
         }
+    ],
+    "testPresets": [
+        {
+            "name": "debug",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "debug_linux"
+        }
     ]
 }

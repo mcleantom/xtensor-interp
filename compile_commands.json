@@ -25,25 +25,25 @@
 },
 {
   "directory": "/home/tom/src/xtensor-interp/build/Debug/tests",
-  "command": "/usr/bin/c++  -isystem /home/tom/src/xtensor-interp/XTensorInterp -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtl-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest -std=c++17 -pthread -fPIC -g -o CMakeFiles/XTensorInterp_unittests.dir/main.cpp.o -c /home/tom/src/xtensor-interp/tests/main.cpp",
+  "command": "/usr/bin/c++ -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -isystem /home/tom/src/xtensor-interp/XTensorInterp -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtl-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest -std=c++17 -pthread -fPIC -g -o CMakeFiles/XTensorInterp_unittests.dir/main.cpp.o -c /home/tom/src/xtensor-interp/tests/main.cpp",
   "file": "/home/tom/src/xtensor-interp/tests/main.cpp",
   "output": "tests/CMakeFiles/XTensorInterp_unittests.dir/main.cpp.o"
 },
 {
   "directory": "/home/tom/src/xtensor-interp/build/Debug/tests",
-  "command": "/usr/bin/c++  -isystem /home/tom/src/xtensor-interp/XTensorInterp -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtl-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest -std=c++17 -pthread -fPIC -g -o CMakeFiles/XTensorInterp_unittests.dir/test_container.cpp.o -c /home/tom/src/xtensor-interp/tests/test_container.cpp",
+  "command": "/usr/bin/c++ -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -isystem /home/tom/src/xtensor-interp/XTensorInterp -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtl-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest -std=c++17 -pthread -fPIC -g -o CMakeFiles/XTensorInterp_unittests.dir/test_container.cpp.o -c /home/tom/src/xtensor-interp/tests/test_container.cpp",
   "file": "/home/tom/src/xtensor-interp/tests/test_container.cpp",
   "output": "tests/CMakeFiles/XTensorInterp_unittests.dir/test_container.cpp.o"
 },
 {
   "directory": "/home/tom/src/xtensor-interp/build/Debug/tests",
-  "command": "/usr/bin/c++  -isystem /home/tom/src/xtensor-interp/XTensorInterp -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtl-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest -std=c++17 -pthread -fPIC -g -o CMakeFiles/XTensorInterp_unittests.dir/test_interpolator.cpp.o -c /home/tom/src/xtensor-interp/tests/test_interpolator.cpp",
+  "command": "/usr/bin/c++ -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -isystem /home/tom/src/xtensor-interp/XTensorInterp -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtl-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest -std=c++17 -pthread -fPIC -g -o CMakeFiles/XTensorInterp_unittests.dir/test_interpolator.cpp.o -c /home/tom/src/xtensor-interp/tests/test_interpolator.cpp",
   "file": "/home/tom/src/xtensor-interp/tests/test_interpolator.cpp",
   "output": "tests/CMakeFiles/XTensorInterp_unittests.dir/test_interpolator.cpp.o"
 },
 {
   "directory": "/home/tom/src/xtensor-interp/build/Debug/tests",
-  "command": "/usr/bin/c++  -isystem /home/tom/src/xtensor-interp/XTensorInterp -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtl-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest -std=c++17 -pthread -fPIC -g -o CMakeFiles/XTensorInterp_unittests.dir/test_itertools.cpp.o -c /home/tom/src/xtensor-interp/tests/test_itertools.cpp",
+  "command": "/usr/bin/c++ -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -isystem /home/tom/src/xtensor-interp/XTensorInterp -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtensor-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/xtl-src/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest/include -isystem /home/tom/src/xtensor-interp/build/Debug/_deps/googletest-src/googletest -std=c++17 -pthread -fPIC -g -o CMakeFiles/XTensorInterp_unittests.dir/test_itertools.cpp.o -c /home/tom/src/xtensor-interp/tests/test_itertools.cpp",
   "file": "/home/tom/src/xtensor-interp/tests/test_itertools.cpp",
   "output": "tests/CMakeFiles/XTensorInterp_unittests.dir/test_itertools.cpp.o"
 }

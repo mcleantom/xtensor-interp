@@ -27,4 +27,20 @@ std::vector<std::tuple<A, B>> product(const std::vector<A>& a, const std::vector
     return res;
 };
 
+template<class T>
+std::vector<std::vector<T>> cart_product (const std::vector<std::vector<T>>& v) {
+    std::vector<std::vector<T>> s = {{}};
+    for (const auto& u : v) {
+        std::vector<std::vector<T>> r;
+        for (const auto& x : s) {
+            for (const auto y : u) {
+                r.push_back(x);
+                r.back().push_back(y);
+            }
+        }
+        s = std::move(r);
+    }
+    return s;
+}
+
 #endif
